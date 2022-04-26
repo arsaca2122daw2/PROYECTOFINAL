@@ -1,0 +1,6 @@
+--2022-04-26 17:16:27--  https://www.google.com/search?q=duelo+oeste+muerto
+Resolving www.google.com (www.google.com)... 142.250.200.68, 2a00:1450:4003:806::2004
+Connecting to www.google.com (www.google.com)|142.250.200.68|:443... connected.
+HTTP request sent, awaiting response... 403 Forbidden
+2022-04-26 17:16:29 ERROR 403: Forbidden.
+
