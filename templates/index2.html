@@ -9,34 +9,35 @@
 <body>
 
     <div>    
-        <a href="/motor1/on"><button>Possar en marxa el motor 1</button><br></a>
-        <a href="/motor1/off"><button>Parar motor 1</button><br></a>
+        <a href="/motor1/on"><button>Cap endavant motor 1</button><br></a>
+        <a href="/motor1/off"><button>Cap enrere motor 1</button><br></a>
     </div>
     <div>    
-        <a href="/motor2/on"><button>Possar en marxa el motor 2</button><br></a>
-        <a href="/motor2/off"><button>Parar motor 2</button><br></a>
+        <a href="/motor2/on"><button>Cap endavant motor 2</button><br></a>
+        <a href="/motor2/off"><button>Cap enrere motor 2</button><br></a>
     </div>
 
     <div>
         <h2>Controlador de la matriu</h2><br>
-        <form>
-            <select name="cella">Selecciona la cel·la
-                <option value="1">Cel·la 1</option>
-                <option value="2">Cel·la 2</option>
-                <option value="3">Cel·la 3</option>
-                <option value="4">Cel·la 4</option>
-                <option value="5">Cel·la 5</option>
-                <option value="6">Cel·la 6</option>
-                <option value="7">Cel·la 7</option>
-                <option value="8">Cel·la 8</option>
-                <option value="9">Cel·la 8</option>
+        <form action="/matriu" method="POST">
+            <!--<select name="cella">Selecciona la cel·la
+                <option value="0,0">Cel·la 1</option>
+                <option value="0,1">Cel·la 2</option>
+                <option value="0,2">Cel·la 3</option>
+                <option value="1,0">Cel·la 4</option>
+                <option value="1,1">Cel·la 5</option>
+                <option value="1,2">Cel·la 6</option>
+                <option value="2,0">Cel·la 7</option>
+                <option value="2,1">Cel·la 8</option>
+                <option value="2,2">Cel·la 8</option>
+            </select>-->
+            <select name="color">
+                <option value="yellow">Groc</option>
+                <option value="red">Vermell</option>
+                <option value="blue">Blau</option>
+                <option value="green">Verd</option>
             </select>
-            <select name="">
-                <option value="groc">Groc</option>
-                <option value="vermell">Vermell</option>
-                <option value="blau">Blau</option>
-                <option value="verd">Verd</option>
-            </select>
+            <button type="submit">Posa la llum</button>
         </form>
 
     </div>
