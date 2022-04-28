@@ -1,8 +1,11 @@
 from buildhat import *
 from flask import *
+from flask_socketio import SocketIO
 import time
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'secret!'
+socketio = SocketIO(app)
 
 @app.route('/')
 def index():
@@ -48,5 +51,10 @@ def sign_up():
 
     return render_template("index2.html")
 
+#Websocekts
+@socketio.on('my event')
+def handle_my_custom_event(json):
+    print('received json: ' + str(json))
+
 if __name__ == '__main__':
-   app.run(debug=True, port=5000, host='0.0.0.0')
+    socketio.run(app)
