@@ -1,3 +1,4 @@
+import keyword
 from buildhat import *
 from flask import *
 from flask_socketio import SocketIO
@@ -6,6 +7,11 @@ import time
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
+keyCodeBeforeA= 0
+keyCodeBeforeB = 0
+keyCodeA = 0
+keyCodeB = 0
+
 
 @app.route('/')
 def index():
@@ -42,7 +48,6 @@ def sign_up():
         matrix =  Matrix('C')
 
         req = request.form
-        cella = req.get("cella")
         color = req.get("color") 
 
         print(color)
@@ -52,9 +57,43 @@ def sign_up():
     return render_template("index2.html")
 
 #Websocekts
-@socketio.on('my event')
-def handle_my_custom_event(json):
-    print('received json: ' + str(json))
+@socketio.on('enviarKeyCode')
+def recibirKeyCode(keyCode):
+    matrix =  Matrix('C')
+    print("El cliente ha pulsado la tecla " + str(keyCode))
+    global keyCodeBeforeA
+    global keyCodeBeforeB
+    global keyCodeA
+    global keyCodeB
+
+    if keyCode == 87 or keyCode == 83:
+        keyCodeA = keyCode
+    
+    if keyCode == 38 or keyCode == 40:
+        keyCodeB = keyCode
+    
+    if keyCodeBeforeA != keyCodeA:
+        Motor('A').stop()
+
+    if keyCodeBeforeB != keyCodeB:
+        Motor('B').stop()
+
+    keyCodeBeforeA = keyCodeA
+    keyCodeBeforeB = keyCodeB
+
+    if keyCode == 87:
+        matrix.clear(("blue", 10))
+        Motor('A').run_for_seconds(1000,100)
+    if keyCode == 83:
+        matrix.clear(("green", 10))
+        Motor('A').run_for_seconds(1000,-100)
+    if keyCode == 38:
+        matrix.clear(("red", 10))
+        Motor('B').run_for_seconds(1000,100)
+    if keyCode == 40:
+        matrix.clear(("yellow", 10))
+        Motor('B').run_for_seconds(1000,-100)
+
 
 if __name__ == '__main__':
     socketio.run(app)
