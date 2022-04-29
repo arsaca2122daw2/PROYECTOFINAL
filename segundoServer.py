@@ -21,15 +21,15 @@ def action(deviceName, action):
             Motor('A').run_for_seconds(1000,100) #Endavant infinit MOTOR1
         if deviceName == 'motor2':
             print('Motor B adelante')
-            Motor('B').run_for_seconds(0.3,100) #Endavant poc MOTOR2
+            Motor('B').run_for_seconds(1000,100) #Endavant poc MOTOR2
 
     if action == 'off':
         if deviceName == 'motor1':
             print('Motor A atrás')
-            Motor('A').run_for_seconds(0.3,-100) #Endarrere poc MOTOR1
+            Motor('A').run_for_seconds(1000,-100) #Endarrere poc MOTOR1
         if deviceName == 'motor2':
             print('Motor B atrás')
-            Motor('B').run_for_seconds(0.3,-100) #Endarrere poc MOTOR2
+            Motor('B').run_for_seconds(1000,-100) #Endarrere poc MOTOR2
 
     return render_template('index2.html')
 
