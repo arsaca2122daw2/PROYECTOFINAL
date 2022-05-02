@@ -69,7 +69,7 @@ def recibirKeyCode(keyCode):
     if keyCode == 87 or keyCode == 83:
         keyCodeA = keyCode
     
-    if keyCode == 38 or keyCode == 40:
+    if keyCode == 81 or keyCode == 69:
         keyCodeB = keyCode
     
     if keyCodeBeforeA != keyCodeA:
@@ -87,13 +87,24 @@ def recibirKeyCode(keyCode):
     if keyCode == 83:
         matrix.clear(("green", 10))
         Motor('A').run_for_seconds(1000,-100)
-    if keyCode == 38:
+    if keyCode == 81:
         matrix.clear(("red", 10))
         Motor('B').run_for_seconds(1000,100)
-    if keyCode == 40:
+    if keyCode == 69:
         matrix.clear(("yellow", 10))
         Motor('B').run_for_seconds(1000,-100)
 
+@socketio.on('keyUp')
+def recibirKeyCode():
+    matrix =  Matrix('C')
+    print("El cliente ha dejado de pulsar teclas")
+    global keyCodeBeforeA
+    global keyCodeBeforeB
+    global keyCodeA
+    global keyCodeB
+
+    Motor('A').stop()
+    Motor('B').stop()
 
 if __name__ == '__main__':
     socketio.run(app)

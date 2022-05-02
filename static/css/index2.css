@@ -1,0 +1,178 @@
+/*GENERALES*/
+
+*{
+
+}
+
+body{
+
+}
+
+input[type=range]{
+    writing-mode: bt-lr; /* IE */
+    -webkit-appearance: slider-vertical; /* WebKit */
+    width: 50px;
+    height: 400px;
+    margin-left: 35px;
+    margin-right: 35px;
+    outline: none;
+    background:transparent;
+}
+
+.teclasMotor1 div{
+    width: 50px;
+    height: 50px;
+    margin-left: 35px;
+    margin-right: 35px;
+    border:1px solid black;
+
+    text-align: center;
+    line-height: 50px;
+    vertical-align:middle
+}
+
+.teclasMotor2 div{
+    width: 50px;
+    height: 50px;
+    margin-left: 35px;
+    margin-right: 35px;
+    border:1px solid black;
+    
+    text-align: center;
+    line-height: 50px;
+    vertical-align:middle
+}
+
+.lucesMotor1 img{
+    width: 50px;
+    margin-left: 36px;
+    margin-right: 36px;
+
+    margin-bottom: 10px;
+}
+
+.lucesMotor2 img{
+    width: 50px;
+    margin-left: 36px;
+    margin-right: 36px;
+
+    margin-bottom: 10px;
+}
+
+/*HEADER*/
+
+header{
+    display: flex;
+    justify-content: space-between;
+
+    background-color: grey;
+}
+
+#logo{
+    align-self: center;
+
+    width: 100px;
+}
+
+#nombre{
+    align-self: center;
+
+    width: 300px;
+    height: 5%;
+}
+
+#iconoPersonas{
+    align-self: center;
+    
+    font-size: 60px;
+    margin-right: 2%;
+
+}
+
+/*MAIN*/
+
+main{
+    margin-top: 5vw;
+    display: flex;
+    justify-content: space-around;
+}
+
+.motor1General{
+    width: 300px;
+    height: 600px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#motor1Titulo{
+    align-self: center;
+}
+
+.lucesMotor1{
+    display: flex;
+
+    width: auto;
+    margin-top: 2vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.slidersMotor1{
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.teclasMotor1{
+    display: flex;
+
+    width: auto;
+    margin-top: 2vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.motor2General{
+    width: 300px;
+    height: 600px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#motor2Titulo{
+    align-self: center;
+}
+
+.lucesMotor2{
+    display: flex;
+
+    width: auto;
+    margin-top: 2vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.slidersMotor2{
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.teclasMotor2{
+    display: flex;
+
+    width: auto;
+    margin-top: 2vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.camGeneral{
+    width: 900px;
+    height: 600px;
+    background-color: black;
+}
+
+/*FOOTER*/

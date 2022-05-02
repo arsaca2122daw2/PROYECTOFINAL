@@ -4,13 +4,59 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>KYS-97OPNEPSL</title>
+
+    <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="../static/css/index2.css">
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
-    <script type="text/javascript" charset="utf-8" src="../static/js/socketioClietn.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../static/js/socketioClient.js"></script>
 </head>
 <body>
-    <header></header>
-    <main></main>
+    <header>
+        <img id="logo" src="../static/imgs/logo.png">
+        <img id="nombre" src="../static/imgs/nombre.png">
+        <span id="iconoPersonas" class="material-symbols-outlined">person</span>
+    </header>
+
+    <main>
+        <div class="motor1General">
+            <img id="motor1Titulo" src="../static/imgs/motor1.png">
+            <div class="lucesMotor1">
+                <img src="../static/imgs/luzVerdeOff.png" id="luzW">
+                <img src="../static/imgs/luzVerdeOff.png" id="luzS">
+            </div>
+            <div class="slidersMotor1">
+                <input id="sliderMotor11" type="range"/>
+                <input id="sliderMotor12" type="range"/>
+            </div>
+            <div class="teclasMotor1">
+                <div id="letraW">W</div>
+                <div id="letraS">S</div>
+            </div>
+        </div>
+
+        <div class="motor2General">
+            <img id="motor1Titulo" src="../static/imgs/moto2.png">
+            <div class="lucesMotor2">
+                <img src="../static/imgs/luzVerdeOff.png" id="luzQ">
+                <img src="../static/imgs/luzVerdeOff.png" id="luzE">
+            </div>
+            <div class="slidersMotor2">
+                <input id="sliderMotor21" type="range"/>
+                <input id="sliderMotor22" type="range"/>
+            </div>
+            <div class="teclasMotor2">
+                <div id="letraQ">Q</div>
+                <div id="letraE">E</div>
+            </div>
+        </div>
+
+        <div class="camGeneral">
+            <div id="camaraFalsa"></div>
+        </div>
+    </main>
+
     <footer></footer>
 </body>
 </html>
