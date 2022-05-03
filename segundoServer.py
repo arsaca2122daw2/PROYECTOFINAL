@@ -17,45 +17,6 @@ keyCodeB = 0
 def index():
     return render_template('index2.html')
 
-#Motores
-@app.route("/<deviceName>/<action>")
-def action(deviceName, action):
-
-    if action == 'on':
-        if deviceName == 'motor1':
-            print('Motor A adelante')
-            Motor('A').run_for_seconds(1000,100) #Endavant infinit MOTOR1
-        if deviceName == 'motor2':
-            print('Motor B adelante')
-            Motor('B').run_for_seconds(1000,100) #Endavant poc MOTOR2
-
-    if action == 'off':
-        if deviceName == 'motor1':
-            print('Motor A atrás')
-            Motor('A').run_for_seconds(1000,-100) #Endarrere poc MOTOR1
-        if deviceName == 'motor2':
-            print('Motor B atrás')
-            Motor('B').run_for_seconds(1000,-100) #Endarrere poc MOTOR2
-
-    return render_template('index2.html')
-
-#Matriz
-@app.route("/matriu", methods=["GET", "POST"])
-def sign_up():
-
-    if request.method == "POST":
-
-        matrix =  Matrix('C')
-
-        req = request.form
-        color = req.get("color") 
-
-        print(color)
-        for x in range(100):
-            matrix.clear((color, 10))
-
-    return render_template("index2.html")
-
 #Websocekts
 @socketio.on('enviarKeyCode')
 def recibirKeyCode(keyCode):
@@ -95,14 +56,9 @@ def recibirKeyCode(keyCode):
         Motor('B').run_for_seconds(1000,-100)
 
 @socketio.on('keyUp')
-def recibirKeyCode():
-    matrix =  Matrix('C')
+def recibirKeyUp():
     print("El cliente ha dejado de pulsar teclas")
-    global keyCodeBeforeA
-    global keyCodeBeforeB
-    global keyCodeA
-    global keyCodeB
-
+    Matrix('C').clear(("blue", 0))
     Motor('A').stop()
     Motor('B').stop()
 
