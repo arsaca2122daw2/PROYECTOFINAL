@@ -1,2 +1,9 @@
-picamera
+*pyhton*
+
 flask
+buildhat
+flask_socketio
+opencv-python
+opencv-contrib-python
+numpy
+imutils
