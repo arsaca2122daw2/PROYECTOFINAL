@@ -62,7 +62,6 @@ window.onload = function() {
         document.getElementById("letraS").style.backgroundColor="white";
         document.getElementById("letraE").style.backgroundColor="white";
         document.getElementById("letraQ").style.backgroundColor="white";
-
     }
 };
 

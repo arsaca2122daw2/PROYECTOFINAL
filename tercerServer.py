@@ -17,11 +17,12 @@ keyCodeB = 0
 
 pi_camera = VideoCamera(flip=False)
 
-
+#index
 @app.route('/')
 def index():
     return render_template('index3.html')
 
+#camara
 def gen(camera):
     while True:
         frame = camera.get_frame()
