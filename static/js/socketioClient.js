@@ -2,6 +2,7 @@ window.onload = function() {
 
     let socket = io()
 
+
     window.addEventListener("keydown", (event) =>{
         movimentKeyMotor(event.keyCode)
     })
@@ -20,7 +21,8 @@ window.onload = function() {
             document.getElementById("luzW").src="../static/imgs/luzVerdeOn.png";
             document.getElementById("letraW").style.border="none";
             document.getElementById("letraW").style.backgroundColor="rgb(131, 131, 131)";
-            socket.emit("enviarKeyCode", keyCode)
+            let potencia = document.getElementById("sliderMotor11").value;
+            socket.emit("enviarKeyCode", keyCode, potencia)
         }
         else if(keyCode == 83){ //Key s
             console.log("Cliente pulsa S")
@@ -29,7 +31,8 @@ window.onload = function() {
             document.getElementById("luzS").src="../static/imgs/luzVerdeOn.png";
             document.getElementById("letraS").style.border="none";
             document.getElementById("letraS").style.backgroundColor="rgb(131, 131, 131)";
-            socket.emit("enviarKeyCode", keyCode)
+            let potencia = document.getElementById("sliderMotor12").value;
+            socket.emit("enviarKeyCode", keyCode, potencia)
         }
         else if(keyCode == 81){ //Key q
             console.log("Cliente pulsa Q")
@@ -38,7 +41,8 @@ window.onload = function() {
             document.getElementById("luzQ").src="../static/imgs/luzVerdeOn.png";
             document.getElementById("letraQ").style.border="none";
             document.getElementById("letraQ").style.backgroundColor="rgb(131, 131, 131)";
-            socket.emit("enviarKeyCode", keyCode)
+            let potencia = document.getElementById("sliderMotor21").value;
+            socket.emit("enviarKeyCode", keyCode, potencia)
         }
         else if(keyCode == 69){ //Key e
             console.log("Cliente pulsa E")
@@ -47,7 +51,8 @@ window.onload = function() {
             document.getElementById("luzE").src="../static/imgs/luzVerdeOn.png";
             document.getElementById("letraE").style.border="none";
             document.getElementById("letraE").style.backgroundColor="rgb(131, 131, 131)";
-            socket.emit("enviarKeyCode", keyCode)
+            let potencia = document.getElementById("sliderMotor22").value;
+            socket.emit("enviarKeyCode", keyCode, potencia)
         }
         else if(keyCode == 65){
             console.log("Cliente pulsa A")

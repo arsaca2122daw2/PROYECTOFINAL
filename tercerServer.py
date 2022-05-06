@@ -14,6 +14,7 @@ keyCodeBeforeA= 0
 keyCodeBeforeB = 0
 keyCodeA = 0
 keyCodeB = 0
+potenciaMotor = 0
 
 pi_camera = VideoCamera(flip=False)
 
@@ -36,13 +37,16 @@ def video_feed():
 
 #Websocekts
 @socketio.on('enviarKeyCode')
-def recibirKeyCode(keyCode):
+def recibirKeyCode(keyCode, potencia):
     matrix =  Matrix('C')
     print("El cliente ha pulsado la tecla " + str(keyCode))
     global keyCodeBeforeA
     global keyCodeBeforeB
     global keyCodeA
     global keyCodeB
+    global potenciaMotor
+
+    potenciaMotor = potencia
 
     if keyCode == 87 or keyCode == 83:
         keyCodeA = keyCode
@@ -61,16 +65,17 @@ def recibirKeyCode(keyCode):
 
     if keyCode == 87:
         matrix.clear(("blue", 10))
-        Motor('A').run_for_seconds(1000,100)
+        Motor('A').run_for_seconds(1000,potencia)
     if keyCode == 83:
         matrix.clear(("green", 10))
-        Motor('A').run_for_seconds(1000,-100)
+        potencia = potencia *-1
+        Motor('A').run_for_seconds(1000,potencia)
     if keyCode == 81:
         matrix.clear(("red", 10))
-        Motor('B').run_for_seconds(1000,100)
+        Motor('B').run_for_seconds(1000,potencia)
     if keyCode == 69:
         matrix.clear(("yellow", 10))
-        Motor('B').run_for_seconds(1000,-100)
+        Motor('B').run_for_seconds(1000,potencia)
 
 @socketio.on('keyUp')
 def recibirKeyUp():
