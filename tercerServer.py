@@ -6,10 +6,13 @@ from camera import VideoCamera
 import time
 import threading
 import os
+from engineio.payload import Payload
+
+Payload.max_decode_packets = 5000
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
-socketio = SocketIO(app)
+socketio = SocketIO(app, cors_allowed_origins="*", async_mode='threading')
 keyCodeBeforeA= 0
 keyCodeBeforeB = 0
 keyCodeA = 0
@@ -48,6 +51,8 @@ def recibirKeyCode(keyCode, potencia):
 
     potenciaMotor = potencia
 
+    potenciaMotor = int(potenciaMotor)
+
     if keyCode == 87 or keyCode == 83:
         keyCodeA = keyCode
     
@@ -65,17 +70,20 @@ def recibirKeyCode(keyCode, potencia):
 
     if keyCode == 87:
         matrix.clear(("blue", 10))
-        Motor('A').run_for_seconds(1000,potencia)
+        Motor('A').run_for_seconds(0.1,potenciaMotor)
+        Matrix('C').clear(("blue", 0))
     if keyCode == 83:
         matrix.clear(("green", 10))
-        potencia = potencia *-1
-        Motor('A').run_for_seconds(1000,potencia)
+        Motor('A').run_for_seconds(0.1,potenciaMotor*-1)
+        Matrix('C').clear(("blue", 0))
     if keyCode == 81:
         matrix.clear(("red", 10))
-        Motor('B').run_for_seconds(1000,potencia)
+        Motor('B').run_for_seconds(0.1,potenciaMotor)
+        Matrix('C').clear(("blue", 0))
     if keyCode == 69:
         matrix.clear(("yellow", 10))
-        Motor('B').run_for_seconds(1000,potencia)
+        Motor('B').run_for_seconds(0.1,potenciaMotor*-1)
+        Matrix('C').clear(("blue", 0))
 
 @socketio.on('keyUp')
 def recibirKeyUp():
@@ -85,4 +93,5 @@ def recibirKeyUp():
     Motor('B').stop()
 
 if __name__ == '__main__':
+    from waitress import serve
     socketio.run(app)

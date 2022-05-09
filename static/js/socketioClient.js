@@ -1,10 +1,15 @@
 window.onload = function() {
 
     let socket = io()
-
+    let teclaAnterior;
 
     window.addEventListener("keydown", (event) =>{
-        movimentKeyMotor(event.keyCode)
+        if(teclaAnterior != event.keyCode){
+            movimentKeyMotor(event.keyCode)
+        }
+        teclaAnterior = event.keyCode
+        console.log("teclaanterior"+teclaAnterior)
+        console.log("keyCode"+event.keyCode)
     })
 
     window.addEventListener("keyup", (event) =>{
@@ -13,6 +18,7 @@ window.onload = function() {
         tituloBODYapagar()
         tituloHEADapagar()
         socket.emit("keyUp")
+        teclaAnterior = 0
     })
 
     function movimentKeyMotor(keyCode){
