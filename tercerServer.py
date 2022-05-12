@@ -29,6 +29,7 @@ def index():
 #camara
 def gen(camera):
     while True:
+        time.sleep(0.1)
         frame = camera.get_frame()
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
@@ -41,7 +42,7 @@ def video_feed():
 #Websocekts
 @socketio.on('enviarKeyCode')
 def recibirKeyCode(keyCode, potencia):
-    matrix =  Matrix('C')
+    matrix =  Matrix('A')
     print("El cliente ha pulsado la tecla " + str(keyCode))
     global keyCodeBeforeA
     global keyCodeBeforeB
@@ -60,7 +61,7 @@ def recibirKeyCode(keyCode, potencia):
         keyCodeB = keyCode
     
     if keyCodeBeforeA != keyCodeA:
-        Motor('A').stop()
+        Motor('C').stop()
 
     if keyCodeBeforeB != keyCodeB:
         Motor('B').stop()
@@ -69,29 +70,91 @@ def recibirKeyCode(keyCode, potencia):
     keyCodeBeforeB = keyCodeB
 
     if keyCode == 87:
-        matrix.clear(("blue", 10))
-        Motor('A').run_for_seconds(0.1,potenciaMotor)
-        Matrix('C').clear(("blue", 0))
+        moverW(potenciaMotor)
     if keyCode == 83:
-        matrix.clear(("green", 10))
-        Motor('A').run_for_seconds(0.1,potenciaMotor*-1)
-        Matrix('C').clear(("blue", 0))
-    if keyCode == 81:
-        matrix.clear(("red", 10))
-        Motor('B').run_for_seconds(0.1,potenciaMotor)
-        Matrix('C').clear(("blue", 0))
+        moverS(potenciaMotor)
+    if keyCode == 65:
+        intermitenteDer()
+        intermitenteDer()
+        girarA()
+    if keyCode == 68:
+        intermitenteIzq()
+        intermitenteIzq()
+        girarD()
     if keyCode == 69:
-        matrix.clear(("yellow", 10))
-        Motor('B').run_for_seconds(0.1,potenciaMotor*-1)
-        Matrix('C').clear(("blue", 0))
+        moverCamaraDerecha()
+    if keyCode == 81:
+        moverCamaraIzquierda()
 
 @socketio.on('keyUp')
 def recibirKeyUp():
     print("El cliente ha dejado de pulsar teclas")
-    Matrix('C').clear(("blue", 0))
-    Motor('A').stop()
+    Matrix('A').clear(("red", 10))
+    Motor('C').stop()
     Motor('B').stop()
+    Motor('D').stop()
+    moverCamaraDefault()
 
+def moverW(potenciaMotor):#Alante
+    pair = MotorPair('C','B')
+    Matrix('A').clear(("green", 10))
+    pair.run_for_seconds(1000,potenciaMotor*-1,potenciaMotor)
+    Matrix('A').clear(("green", 0))
+
+def moverS(potenciaMotor):#Atrás
+    pair = MotorPair('C','B')
+    Matrix('A').clear(("white", 10))
+    pair.run_for_seconds(1000,potenciaMotor,potenciaMotor*-1)
+    Matrix('A').clear(("white", 0))
+
+def girarA():#Girar Derecha
+    #pair = MotorPair('A','D')
+    #cambiar fufncon intermitente
+    Matrix('A').clear(("yellow", 10))
+    #pair.run_for_seconds(1000,potenciaMotor,potenciaMotor)
+    potenciaMotor=100
+    Motor('B').run_for_seconds(1000, potenciaMotor)
+    Matrix('A').clear(("yellow", 0))
+
+def girarD():#Girar Izquierda
+    #pair = MotorPair('A','D')
+    #cambiar fufncon intermitente
+    Matrix('A').clear(("blue", 10))
+    #pair.run_for_seconds(1000,potenciaMotor*-1,potenciaMotor*-1)
+    potenciaMotor=100
+    Motor('C').run_for_seconds(1000, potenciaMotor*-1)
+    Matrix('A').clear(("blue", 0))
+
+def intermitenteDer():
+    matrix = Matrix('A')
+    matrix.clear(("blue",0))
+    matrix.set_pixel((1, 2), ("yellow", 10))
+    time.sleep(0.2)
+
+    matrix.set_pixel((1, 1), ("yellow", 10))
+    time.sleep(0.2)
+
+    matrix.set_pixel((1, 0), ("yellow", 10))
+    time.sleep(0.2)
+def intermitenteIzq():
+    matrix = Matrix('A')
+    matrix.clear(("blue",0))
+    matrix.set_pixel((1, 0), ("yellow", 10))
+    time.sleep(0.2)
+
+    matrix.set_pixel((1, 1), ("yellow", 10))
+    time.sleep(0.2)
+    1
+    matrix.set_pixel((1, 2), ("yellow", 10))
+    time.sleep(0.2) 
+
+
+def moverCamaraDerecha():
+    Motor('D').run_to_position(90,15)
+def moverCamaraIzquierda():
+    Motor('D').run_to_position(-90,15)
+def moverCamaraDefault():
+    Motor('D').run_to_position(0,15)
 if __name__ == '__main__':
     from waitress import serve
     socketio.run(app)
