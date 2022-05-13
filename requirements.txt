@@ -9,3 +9,4 @@ numpy
 imutils
 gevent
 waitress
+glob2
