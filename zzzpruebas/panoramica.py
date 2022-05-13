@@ -4,20 +4,18 @@ import glob
 import imutils
 
 iamge_paths = glob.glob('imagenes/*.jpg')
-iamges = []
+images = []
 
 for image in iamge_paths:
     img = cv2.imread(image)
-    imagenes.append(img)
-    #cv2.waitKey(0)
+    images.append(img)
 
 imagenStitcher = cv2.Stitcher_create()
-error, imagenStitchada = imagenStitcher.stitch(imagenes)
-print(imagenStitchada)
+imagenStitchada = imagenStitcher.stitch(images)
 
-if not error:
+if imagenStitchada:
     cv2.imwrite("ImagenPanoramica.png")
     cv2.imshow("Imagen panoramica", imagenStitchada)
-    #cv2.waitKey(0)
+    cv2.waitKey(0)
 else:
     print("mal")
