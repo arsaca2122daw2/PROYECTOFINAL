@@ -68,7 +68,7 @@ window.onload = function() {
             document.getElementById("flechaIzq").src="../static/imgs/flechasON.png";
             document.getElementById("letraA").style.border="none";
             document.getElementById("letraA").style.backgroundColor="rgb(131, 131, 131)";
-            let potencia = 10
+            let potencia = 15
             socket.emit("enviarKeyCode", keyCode, potencia)
         }
         else if(keyCode == 68){//Key d
@@ -77,7 +77,7 @@ window.onload = function() {
             document.getElementById("flechaDer").src="../static/imgs/flechasON.png";
             document.getElementById("letraD").style.border="none";
             document.getElementById("letraD").style.backgroundColor="rgb(131, 131, 131)";
-            let potencia = 10
+            let potencia = 15
             socket.emit("enviarKeyCode", keyCode, potencia)
         }
         else{
