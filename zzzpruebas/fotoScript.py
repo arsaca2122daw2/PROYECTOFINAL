@@ -1,4 +1,8 @@
-import subprocess
+from picamera import PiCamera
+import time
 
-list_files = subprocess.run(["ls", "-l"])
-print("The exit code was: %d" % list_files.returncode)
+camera = PiCamera()
+camera.close()
+time.sleep(2)
+camera.capture("prueba.jpg")
+print("Done.")

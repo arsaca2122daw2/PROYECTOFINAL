@@ -63,22 +63,40 @@ window.onload = function() {
             socket.emit("enviarKeyCode", keyCode, potencia)
         }
         else if(keyCode == 65){ //Key a
-            console.log("Cliente pulsa A")
+            console.log("Cliente pulsa A");
             defaultTeclas();
             document.getElementById("flechaIzq").src="../static/imgs/flechasON.png";
             document.getElementById("letraA").style.border="none";
             document.getElementById("letraA").style.backgroundColor="rgb(131, 131, 131)";
-            let potencia = 15
-            socket.emit("enviarKeyCode", keyCode, potencia)
+            let potencia = 15;
+            socket.emit("enviarKeyCode", keyCode, potencia);
         }
         else if(keyCode == 68){//Key d
-            console.log("Cliente pulsa D")
+            console.log("Cliente pulsa D");
             defaultTeclas();
             document.getElementById("flechaDer").src="../static/imgs/flechasON.png";
             document.getElementById("letraD").style.border="none";
             document.getElementById("letraD").style.backgroundColor="rgb(131, 131, 131)";
-            let potencia = 15
-            socket.emit("enviarKeyCode", keyCode, potencia)
+            let potencia = 15;
+            socket.emit("enviarKeyCode", keyCode, potencia);
+        }
+        else if(keyCode == 70){//key f
+            console.log("Cliente pulsa F");
+            let frame = document.getElementById("bg");
+            let datURL = getDataUrl(frame);
+            console.log(datURL)
+
+            let nombreFoto = new Date().toString()
+            nombreFoto = nombreFoto + '.png'
+
+            let url = document.createElement('a');
+            url.download = nombreFoto;
+            url.href = datURL;
+            url.click();
+            
+            document.getElementById("pruebcam").src = datURL;
+            let potencia = 15;
+            socket.emit("enviarKeyCode", keyCode, potencia);
         }
         else{
 
@@ -136,6 +154,16 @@ window.onload = function() {
     function tituloBODYapagar(){
         document.getElementById("motor1Titulo").style.opacity="0.8";
     }
+
+    function getDataUrl(img) {
+        // Create canvas
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0);
+        return canvas.toDataURL('image/jpg');
+     }
 
 };
 

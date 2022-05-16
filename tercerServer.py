@@ -150,11 +150,11 @@ def intermitenteIzq():
 
 
 def moverCamaraDerecha():
-    Motor('D').run_to_position(90,potenciaMotor)
+    Motor('D').run_to_position(90,15)
 def moverCamaraIzquierda():
-    Motor('D').run_to_position(-90,potenciaMotor)
+    Motor('D').run_to_position(-90,15)
 def moverCamaraDefault():
-    Motor('D').run_to_position(0,potenciaMotor)
+    Motor('D').run_to_position(0,15)
 if __name__ == '__main__':
     from waitress import serve
     socketio.run(app)
