@@ -1,5 +1,6 @@
 window.onload = function() {
 
+    let instantaneas = 0
     let socket = io()
     let teclaAnterior;
 
@@ -13,10 +14,7 @@ window.onload = function() {
     })
 
     window.addEventListener("keyup", (event) =>{
-        apagarLuces();
         defaultTeclas();
-        tituloBODYapagar()
-        tituloHEADapagar()
         socket.emit("keyUp")
         teclaAnterior = 0
     })
@@ -25,47 +23,38 @@ window.onload = function() {
         if(keyCode == 87){// key w
             console.log("Cliente pulsa W")
             defaultTeclas();
-            tituloBODYencender()
-            document.getElementById("luzW").src="../static/imgs/luzVerdeOn.png";
             document.getElementById("letraW").style.border="none";
             document.getElementById("letraW").style.backgroundColor="rgb(131, 131, 131)";
-            let potencia = document.getElementById("sliderMotor11").value;
+            let potencia = document.getElementById("sliderPotencia").value;
             socket.emit("enviarKeyCode", keyCode, potencia)
         }
         else if(keyCode == 83){ //Key s
             console.log("Cliente pulsa S")
             defaultTeclas();
-            tituloBODYencender()
-            document.getElementById("luzS").src="../static/imgs/luzVerdeOn.png";
             document.getElementById("letraS").style.border="none";
             document.getElementById("letraS").style.backgroundColor="rgb(131, 131, 131)";
-            let potencia = document.getElementById("sliderMotor12").value;
+            let potencia = document.getElementById("sliderPotencia").value;
             socket.emit("enviarKeyCode", keyCode, potencia)
         }
         else if(keyCode == 81){ //Key q
             console.log("Cliente pulsa Q")
             defaultTeclas();
-            tituloHEADencender()
-            document.getElementById("luzQ").src="../static/imgs/luzVerdeOn.png";
             document.getElementById("letraQ").style.border="none";
             document.getElementById("letraQ").style.backgroundColor="rgb(131, 131, 131)";
-            let potencia = document.getElementById("sliderMotor21").value;
+            let potencia = document.getElementById("sliderPotencia").value;
             socket.emit("enviarKeyCode", keyCode, potencia)
         }
         else if(keyCode == 69){ //Key e
             console.log("Cliente pulsa E")
             defaultTeclas();
-            tituloHEADencender()
-            document.getElementById("luzE").src="../static/imgs/luzVerdeOn.png";
             document.getElementById("letraE").style.border="none";
             document.getElementById("letraE").style.backgroundColor="rgb(131, 131, 131)";
-            let potencia = document.getElementById("sliderMotor22").value;
+            let potencia = document.getElementById("sliderPotencia").value;
             socket.emit("enviarKeyCode", keyCode, potencia)
         }
         else if(keyCode == 65){ //Key a
             console.log("Cliente pulsa A");
             defaultTeclas();
-            document.getElementById("flechaIzq").src="../static/imgs/flechasON.png";
             document.getElementById("letraA").style.border="none";
             document.getElementById("letraA").style.backgroundColor="rgb(131, 131, 131)";
             let potencia = 15;
@@ -74,7 +63,6 @@ window.onload = function() {
         else if(keyCode == 68){//Key d
             console.log("Cliente pulsa D");
             defaultTeclas();
-            document.getElementById("flechaDer").src="../static/imgs/flechasON.png";
             document.getElementById("letraD").style.border="none";
             document.getElementById("letraD").style.backgroundColor="rgb(131, 131, 131)";
             let potencia = 15;
@@ -94,22 +82,19 @@ window.onload = function() {
             url.href = datURL;
             url.click();
             
-            document.getElementById("pruebcam").src = datURL;
             let potencia = 15;
             socket.emit("enviarKeyCode", keyCode, potencia);
+            
+            document.getElementById("letraF").style.border="none";
+            document.getElementById("letraF").style.backgroundColor="rgb(131, 131, 131)";
+
+            let imgDOM = "img" + instantaneas;
+            document.getElementById(imgDOM).src = datURL;
+            instantaneas++;
         }
         else{
 
         }
-    }
-    
-    function apagarLuces(){
-        document.getElementById("luzW").src="../static/imgs/luzVerdeOff.png";
-        document.getElementById("luzQ").src="../static/imgs/luzVerdeOff.png";
-        document.getElementById("luzE").src="../static/imgs/luzVerdeOff.png";
-        document.getElementById("luzS").src="../static/imgs/luzVerdeOff.png";
-        document.getElementById("flechaIzq").src="../static/imgs/flechasOff.png";
-        document.getElementById("flechaDer").src="../static/imgs/flechasOff.png";
     }
 
     function defaultTeclas(){
@@ -137,22 +122,9 @@ window.onload = function() {
         document.getElementById("letraQ").style.borderBottom="2px rgb(87, 87, 87) solid";
         document.getElementById("letraQ").style.backgroundColor="rgb(182, 182, 182)";
 
-    }
-
-    function tituloHEADencender(){
-        document.getElementById("motor2Titulo").style.opacity="1";
-    }
-
-    function tituloBODYencender(){
-        document.getElementById("motor1Titulo").style.opacity="1";
-    }
-
-    function tituloHEADapagar(){
-        document.getElementById("motor2Titulo").style.opacity="0.8";
-    }
-
-    function tituloBODYapagar(){
-        document.getElementById("motor1Titulo").style.opacity="0.8";
+        document.getElementById("letraF").style.borderRight="2px rgb(87, 87, 87) solid";
+        document.getElementById("letraF").style.borderBottom="2px rgb(87, 87, 87) solid";
+        document.getElementById("letraF").style.backgroundColor="rgb(182, 182, 182)";
     }
 
     function getDataUrl(img) {

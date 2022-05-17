@@ -11,6 +11,7 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
     <script type="text/javascript" charset="utf-8" src="../static/js/socketioClient.js"></script>
+
 </head>
 <body>
     <header>
@@ -18,7 +19,18 @@
         <img id="nombre" src="../static/imgs/nombre.png">
         <span id="iconoPersonas" class="material-symbols-outlined">person</span>
     </header>
-
+    <div class="titCAM">    
+        <img id="titCAM" src="../static/imgs/cam.png">
+    </div>
+    <div class="titINST">    
+        <img id="titINST" src="../static/imgs/instantaneas.png">
+    </div>
+    <div class="titPOT">    
+        <img id="titPOT" src="../static/imgs/potencia.png">
+    </div>
+    <div class="titINSTRUC">    
+        <img id="titINSTRUC" src="../static/imgs/instrucciones.png">
+    </div>
     <main>
         <img id="live" src="../static/imgs/live.png">
         <div class="camGeneral">
@@ -37,22 +49,46 @@
         </div>
     </main>
     <aside>
-        <div class="ayudaAlante">
-
+        <div class="ayuda" id="ayudaAlante">
+            <div>
+                <div class="tecla"  id="letraW">W</div>
+                <span>Hacia Delante</span>
+            </div>
+            <div>
+                <span id="spanMargin">Hacia Atrás</span>
+                <div class="tecla"  id="letraS">S</div>
+            </div>
         </div>
-        <div class="ayudaLados">
-
+        <div class="ayuda" id="ayudaLados">
+            <div>
+                <div class="tecla"  id="letraA">A</div>
+                <span>Girar Izquierda</span>
+            </div>
+            <div>            
+                <span id="spanMargin">Girar Derecha</span>
+                <div class="tecla"  id="letraD">D</div>
+            </div>
         </div>
-        <div class="ayudaCam">
-
+        <div class="ayuda" id="ayudaCam">
+            <div>
+                <div class="tecla"  id="letraQ">Q</div>
+                <span>Mover CAM Izqueirda</span>
+            </div>
+            <div>
+                <span id="spanMargin">Mover CAM Derecha</span>
+                <div class="tecla"  id="letraE">E</div>
+            </div>
         </div>
-        <div class="ayudaFoto">
-
+        <div class="ayuda" id="ayudaFoto">
+            <div class="tecla"  id="letraF">F</div>
+            <span>Tomar Instantánea</span>
         </div>
     </aside>
 
     <footer>
-
+        <span>MIN</span>
+        <input id="sliderPotencia" type="range" max="100" min="0" value="50" step="1"/>
+        <span>MAX</span>
     </footer>
 
 </body>
