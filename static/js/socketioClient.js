@@ -1,6 +1,6 @@
 window.onload = function() {
 
-    let instantaneas = 0
+    let instantaneas = 1
     let socket = io()
     let teclaAnterior;
 
@@ -71,7 +71,8 @@ window.onload = function() {
         else if(keyCode == 70){//key f
             console.log("Cliente pulsa F");
             let frame = document.getElementById("bg");
-            let datURL = getDataUrl(frame);
+            let tamany = document.getElementById("img1")
+            let datURL = getDataUrl(frame,tamany );
             console.log(datURL)
 
             let nombreFoto = new Date().toString()
@@ -89,8 +90,14 @@ window.onload = function() {
             document.getElementById("letraF").style.backgroundColor="rgb(131, 131, 131)";
 
             let imgDOM = "img" + instantaneas;
+            console.log(imgDOM);
             document.getElementById(imgDOM).src = datURL;
-            instantaneas++;
+
+            console.log(instantaneas);
+
+            if(instantaneas != 9)instantaneas++;
+            else instantaneas=1;
+            
         }
         else{
 
@@ -127,12 +134,12 @@ window.onload = function() {
         document.getElementById("letraF").style.backgroundColor="rgb(182, 182, 182)";
     }
 
-    function getDataUrl(img) {
+    function getDataUrl(img, tamany) {
         // Create canvas
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
-        canvas.width = img.width;
-        canvas.height = img.height;
+        canvas.width = tamany.width + 100;
+        canvas.height = tamany.height + 100;
         ctx.drawImage(img, 0, 0);
         return canvas.toDataURL('image/jpg');
      }
