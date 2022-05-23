@@ -1,0 +1,15 @@
+
+@author arsaca2122daw2@protonmail.com
+@version 1.0
+
+Caldrà trobar-se en l'entorn virtual abans d'inicar l'aplicació.
+
+source ./venv/bin/activate
+
+Per iniciar el servidor l'aplicació:
+
+python3 cuartoServer.py
+
+Una vegada inciat el servidor connectar-se a la IP de la RaspBerry amb el port 5000.
+
+Tot llest per utilitzar el robot!
